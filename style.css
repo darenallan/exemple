@@ -1,0 +1,240 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --border: #e2e5ea;
+    --text: #1e2028;
+    --text-muted: #6b7280;
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --primary-light: #ede9fe;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --radius: 10px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 14px rgba(0,0,0,.08);
+    --transition: .2s ease;
+}
+
+html { font-size: 15px; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+.header-left { display: flex; align-items: center; gap: 1.5rem; }
+.logo { font-weight: 700; font-size: 1.3rem; color: var(--primary); }
+.logo span { color: var(--text); }
+.breadcrumb { font-size: .85rem; color: var(--text-muted); }
+
+/* ===== MAIN LAYOUT ===== */
+.main { flex: 1; padding: 2rem; max-width: 1280px; margin: 0 auto; width: 100%; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.col-left, .col-right { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* ===== CARD ===== */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-md); }
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: .6rem;
+    border-bottom: 2px solid var(--primary-light);
+    color: var(--text);
+}
+
+/* ===== FIELDS ===== */
+.field { margin-bottom: .9rem; }
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+    display: block;
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: .35rem;
+}
+
+.req { color: var(--danger); }
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: .6rem .85rem;
+    font-family: inherit;
+    font-size: .9rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: #fafbfc;
+    color: var(--text);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .85rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+textarea { resize: vertical; }
+
+/* ===== ROW HELPERS ===== */
+.row-2, .row-3 { display: grid; gap: .75rem; }
+.row-2 { grid-template-columns: 1fr 1fr; }
+.row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ===== UPLOAD ZONE ===== */
+.upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+}
+.upload-zone:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+.upload-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg);
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    margin-bottom: .5rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .6rem 1.2rem;
+    font-family: inherit;
+    font-size: .88rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    width: 100%;
+    justify-content: center;
+}
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,.3); }
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    width: 100%;
+    justify-content: center;
+    margin-top: .5rem;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+.btn-sm {
+    padding: .45rem .9rem;
+    font-size: .82rem;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+}
+.btn-sm:hover { background: var(--primary); color: #fff; }
+
+/* ===== ACTIONS CARD ===== */
+.card-actions { position: sticky; top: 5rem; }
+
+/* ===== TOAST ===== */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--accent);
+    color: #fff;
+    padding: .8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    box-shadow: 0 6px 20px rgba(16,185,129,.3);
+    transform: translateY(120%);
+    opacity: 0;
+    transition: all .4s cubic-bezier(.4,0,.2,1);
+    z-index: 999;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: .8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .header { padding: .8rem 1rem; }
+    .main { padding: 1rem; }
+    .row-3 { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Produit — Admin Simplifié</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-left">
+        <div class="logo">MUN<span>.MARKET</span></div>
+        <nav class="breadcrumb">Admin &rsaquo; Produits &rsaquo; Créer</nav>
+    </div>
+    <a href="#" class="btn btn-outline" id="btn-view-all">📦 Voir tous les produits</a>
+</header>
+
+<!-- Main -->
+<main class="main">
+    <form id="product-form" class="form-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+
+            <!-- Type de produit -->
+            <section class="card">
+                <h2 class="card-title">Type de produit</h2>
+                <div class="field">
+                    <label for="product-type">Catégorie générale</label>
+                    <select id="product-type">
+                        <option value="">— Choisir —</option>
+                        <option>Produit Général</option>
+                        <option>Panier Ménagère</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Infos de base -->
+            <section class="card">
+                <h2 class="card-title">Informations de base</h2>
+
+                <div class="field">
+                    <label for="product-name">Nom du produit <span class="req">*</span></label>
+                    <input type="text" id="product-name" placeholder="Ex: Riz parfumé 5kg" required>
+                </div>
+
+                <div class="field">
+                    <label for="short-desc">Description courte</label>
+                    <textarea id="short-desc" rows="2" placeholder="Résumé en 1-2 phrases"></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="description">Description complète</label>
+                    <textarea id="description" rows="4" placeholder="Description détaillée du produit"></textarea>
+                </div>
+            </section>
+
+            <!-- Images -->
+            <section class="card">
+                <h2 class="card-title">Images</h2>
+                <div class="field">
+                    <label for="thumbnail">URL de la miniature</label>
+                    <input type="url" id="thumbnail" placeholder="https://exemple.com/image.png">
+                </div>
+                <div class="upload-zone" id="upload-zone">
+                    <span class="upload-icon">+</span>
+                    <p>Cliquer pour ajouter des images</p>
+                </div>
+            </section>
+
+            <!-- Prix & Stock -->
+            <section class="card">
+                <h2 class="card-title">Prix, SKU &amp; Stock</h2>
+                <div class="row-3">
+                    <div class="field">
+                        <label for="price">Prix de vente (FCFA)</label>
+                        <input type="number" id="price" value="0" min="0">
+                    </div>
+                    <div class="field">
+                        <label for="original-price">Prix original (FCFA)</label>
+                        <input type="number" id="original-price" value="0" min="0">
+                    </div>
+                    <div class="field">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" value="0" min="0">
+                    </div>
+                </div>
+                <div class="row-2">
+                    <div class="field">
+                        <label for="sku">SKU</label>
+                        <input type="text" id="sku" placeholder="Auto-généré" readonly>
+                    </div>
+                    <div class="field">
+                        <label for="unit-select">Unité de vente</label>
+                        <select id="unit-select">
+                            <option>Pièce</option>
+                            <option>Kg</option>
+                            <option>Litre</option>
+                            <option>Paquet</option>
+                            <option>Carton</option>
+                            <option>Sac</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variations -->
+            <section class="card">
+                <h2 class="card-title">Variations</h2>
+                <div class="row-2">
+                    <div class="field">
+                        <label for="attr-select">Attribut</label>
+                        <select id="attr-select">
+                            <option value="">— Aucune variation —</option>
+                            <option>Taille</option>
+                            <option>Couleur</option>
+                            <option>Poids</option>
+                            <option>Saveur</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="attr-value">Valeurs</label>
+                        <input type="text" id="attr-value" placeholder="Ex: S, M, L, XL">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm" id="btn-add-variation">+ Ajouter une variation</button>
+            </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN (Sidebar) -->
+        <div class="col-right">
+
+            <section class="card">
+                <h3 class="card-title">Statut</h3>
+                <div class="field">
+                    <select id="status">
+                        <option>Publié</option>
+                        <option>Brouillon</option>
+                        <option>En attente</option>
+                        <option>Désactivé</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Produit populaire ?</h3>
+                <div class="field">
+                    <select id="best-selling">
+                        <option>Non</option>
+                        <option>Oui</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Réduction</h3>
+                <div class="row-2">
+                    <div class="field">
+                        <label for="discount-val">Valeur</label>
+                        <input type="number" id="discount-val" value="0" min="0">
+                    </div>
+                    <div class="field">
+                        <label for="discount-type">Type</label>
+                        <select id="discount-type">
+                            <option>Fixe (FCFA)</option>
+                            <option>Pourcentage (%)</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Poids unitaire</h3>
+                <div class="field">
+                    <label for="weight">Poids (KG)</label>
+                    <input type="number" id="weight" value="0" min="0" step="0.1">
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Marque</h3>
+                <div class="field">
+                    <select id="brand">
+                        <option>Aucune marque</option>
+                        <option>Maggi</option>
+                        <option>Nestlé</option>
+                        <option>Brassivoire</option>
+                        <option>Unilever</option>
+                        <option>Autre</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Catégorie</h3>
+                <div class="field">
+                    <select id="category">
+                        <option value="">— Choisir —</option>
+                        <option>Alimentaire</option>
+                        <option>Boissons</option>
+                        <option>Hygiène &amp; Beauté</option>
+                        <option>Ménage</option>
+                        <option>Électronique</option>
+                        <option>Mode &amp; Vêtements</option>
+                        <option>Bébé &amp; Enfants</option>
+                        <option>Épicerie</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="sub-category">Sous-catégorie</label>
+                    <select id="sub-category">
+                        <option value="">— Choisir d'abord la catégorie —</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="card-title">Livraison</h3>
+                <div class="field">
+                    <label for="delivery-days">Délai estimé (jours)</label>
+                    <select id="delivery-days">
+                        <option>1</option>
+                        <option selected>2</option>
+                        <option>3</option>
+                        <option>5</option>
+                        <option>7</option>
+                        <option>14</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="delivery-zone">Zone de livraison</label>
+                    <select id="delivery-zone">
+                        <option>Abidjan uniquement</option>
+                        <option>Nationale</option>
+                        <option>Internationale</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="card card-actions">
+                <h3 class="card-title">Publier</h3>
+                <button type="submit" class="btn btn-primary" id="btn-save">💾 Enregistrer</button>
+                <button type="button" class="btn btn-outline" id="btn-save-exit">↗ Enregistrer &amp; Quitter</button>
+            </section>
+
+        </div>
+    </form>
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast">Produit enregistré avec succès !</div>
+
+<footer class="footer">
+    &copy; 2024 mun.market — Tous droits réservés.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
